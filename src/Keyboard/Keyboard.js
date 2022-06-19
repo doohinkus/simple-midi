@@ -50,7 +50,7 @@ export default function Keyboard() {
   return (
     <>
       <p>octave: {octave}</p>
-      <p>active note: {currentNote}</p>
+      <p>last note played: {currentNote}</p>
       <div
         className={styles.keyboard}
         tabIndex={0}
