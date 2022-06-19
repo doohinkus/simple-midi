@@ -5,6 +5,7 @@ import styles from "./Keyboard.module.css";
 export default function Keyboard() {
   const [octave, setOctave] = useState(4);
   const [activeNote, setActiveNote] = useState(null);
+  const [currentNote, setCurrentNote] = useState(null);
 
   function raiseOctave() {
     if (octave < 8) {
@@ -23,6 +24,7 @@ export default function Keyboard() {
     if (isNoteKey) {
       notes[key] && notes[key].play(octave);
       setActiveNote(notes[key].note + octave);
+      setCurrentNote(notes[key].note + octave);
     }
     if (key == "ArrowUp") {
       raiseOctave();
@@ -48,7 +50,7 @@ export default function Keyboard() {
   return (
     <>
       <p>octave: {octave}</p>
-      <p>active note: {activeNote}</p>
+      <p>active note: {currentNote}</p>
       <div
         className={styles.keyboard}
         tabIndex={0}
