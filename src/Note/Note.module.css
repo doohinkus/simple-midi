@@ -1,0 +1,31 @@
+:root {
+  --width: 3rem;
+  --height: 10rem;
+}
+div {
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 0;
+  /* display: flex;
+  justify-content: center;
+  align-items: flex-start; */
+}
+.white {
+  border: 1px solid black;
+  background-color: lightgray;
+  width: var(--width);
+  height: var(--height);
+  position: relative;
+}
+.black {
+  border: 1px solid black;
+  background-color: darkslategray;
+  width: calc(var(--width) * 0.65);
+  height: calc(var(--height) * 0.6);
+  margin-left: calc(var(--width) * -0.65);
+  z-index: 2;
+}
+.active {
+  transition: all cubic-bezier(0.55, 0.055, 0.675, 0.19) ease-in-out;
+  filter: blur(1px) grayscale(20%);
+}

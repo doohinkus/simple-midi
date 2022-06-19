@@ -1,0 +1,48 @@
+:root {
+  --width: 3rem;
+  --height: 10rem;
+}
+.keyboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: calc(10%);
+  border: 3px solid black;
+}
+.key.active {
+  color: red;
+  background-color: hotpink;
+}
+.key {
+  height: var(--height);
+  width: var(--width);
+  box-sizing: border-box;
+}
+.flex {
+  display: flex;
+  border: 1px solid red;
+}
+.flexCenter {
+  justify-content: center;
+}
+.flexBottom {
+  align-items: flex-end;
+}
+
+.white {
+  background-color: aliceblue;
+  position: relative;
+  /* justify-content: center;
+  align-items: flex-end; */
+}
+.black {
+  background-color: darkslategray;
+  /* position: absolute; */
+  margin-top: calc(var(--height) * -0.35);
+  margin-left: calc(var(--width) * 0.65 * -1);
+  width: calc(var(--width) * 0.65);
+  height: calc(var(--height) * 0.65);
+  z-index: 2;
+  /* justify-content: center;
+  align-items: flex-end; */
+}
