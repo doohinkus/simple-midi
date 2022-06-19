@@ -1,7 +1,9 @@
 import * as Tone from "tone";
 
 export const synth = new Tone.PolySynth().toDestination();
-
+export async function startTone() {
+  await Tone.start();
+}
 export const notes = {
   a: {
     note: "C",

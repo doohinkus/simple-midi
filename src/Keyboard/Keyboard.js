@@ -6,6 +6,7 @@ export default function Keyboard() {
   const [octave, setOctave] = useState(4);
   const [activeNote, setActiveNote] = useState(null);
   const [currentNote, setCurrentNote] = useState(null);
+  const [activeKey, setActiveKey] = useState(null);
 
   function raiseOctave() {
     if (octave < 8) {
@@ -21,21 +22,24 @@ export default function Keyboard() {
     const key = e.key;
     const isNoteKey = notes[key];
     // console.log("key -> ", key);
+    setActiveKey((prev) => key);
     if (isNoteKey) {
-      notes[key] && notes[key].play(octave);
+      notes[key].play(octave);
       setActiveNote(notes[key].note + octave);
       setCurrentNote(notes[key].note + octave);
     }
-    if (key == "ArrowUp") {
+    if (key === "ArrowUp") {
       raiseOctave();
     }
-    if (key == "ArrowDown") {
+    if (key === "ArrowDown") {
       lowerOctave();
     }
   }
   function handleKeyUp(e) {
     const key = e.key;
     const isNoteKey = notes[key];
+    setActiveKey((prev) => null);
+
     if (isNoteKey) {
       notes[key] && notes[key].play(octave);
       setActiveNote(null);
@@ -47,17 +51,24 @@ export default function Keyboard() {
     }    ${/#/.test(note) ? styles.black : styles.white} ${
       note + octave === activeNote ? styles.active : ""
     }`;
+
   return (
     <>
       <p>octave: {octave}</p>
       <p>last note played: {currentNote}</p>
+      <p>active key: {activeKey}</p>
       <div
         className={styles.keyboard}
         tabIndex={0}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
       >
-        <button onClick={raiseOctave}>Raise Octave</button>
+        <button
+          onClick={raiseOctave}
+          className={`${activeKey === "ArrowUp" ? "active" : ""}`}
+        >
+          Raise Octave
+        </button>
         {Object.keys(notes).map((note) => {
           const _note = notes[note].note;
           return (
@@ -66,7 +77,13 @@ export default function Keyboard() {
             </div>
           );
         })}
-        <button onClick={lowerOctave}>Lower Octave</button>
+
+        <button
+          onClick={lowerOctave}
+          className={`${activeKey === "ArrowDown" ? "active" : ""}`}
+        >
+          Lower Octave
+        </button>
       </div>
     </>
   );
