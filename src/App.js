@@ -4,7 +4,8 @@ import Keyboard from "./Keyboard/Keyboard";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" role="main">
+      <h1>Midi Keyboard</h1>
       <Keyboard />
     </div>
   );
