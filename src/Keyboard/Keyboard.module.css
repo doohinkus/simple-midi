@@ -28,7 +28,9 @@
 .flexBottom {
   align-items: flex-end;
 }
-
+.active {
+  background-color: hotpink;
+}
 .white {
   background-color: aliceblue;
   position: relative;

@@ -45,12 +45,11 @@ export default function Keyboard() {
       setActiveNote(null);
     }
   }
-  const keyClass = (note) =>
-    `${styles.key} ${styles.flex} ${styles.flexBottom} ${
-      styles.flexCenter
-    }    ${/#/.test(note) ? styles.black : styles.white} ${
-      note + octave === activeNote ? styles.active : ""
-    }`;
+  const activeClass = (key) => `${activeKey === key ? styles.active : ""}`;
+  const keyClass = (note, key) =>
+    `${styles.key} ${styles.flex} ${styles.flexBottom} ${styles.flexCenter} ${
+      /#/.test(note) ? styles.black : styles.white
+    } ${activeClass(key)}`;
 
   return (
     <>
@@ -63,25 +62,23 @@ export default function Keyboard() {
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
       >
-        <button
-          onClick={raiseOctave}
-          className={`${activeKey === "ArrowUp" ? "active" : ""}`}
-        >
+        <button onClick={raiseOctave} className={`${activeClass("ArrowUp")}`}>
           Raise Octave
         </button>
         {Object.keys(notes).map((note) => {
           const _note = notes[note].note;
           return (
-            <div key={_note} className={keyClass(_note)}>
+            <div
+              key={_note}
+              className={keyClass(_note, notes[note].key)}
+              data-note={note}
+            >
               <p>{_note}</p>
             </div>
           );
         })}
 
-        <button
-          onClick={lowerOctave}
-          className={`${activeKey === "ArrowDown" ? "active" : ""}`}
-        >
+        <button onClick={lowerOctave} className={`${activeClass("ArrowDown")}`}>
           Lower Octave
         </button>
       </div>
