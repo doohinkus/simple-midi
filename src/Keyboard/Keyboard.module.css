@@ -1,26 +1,25 @@
 :root {
-  --width: 3rem;
-  --height: 10rem;
+  --width: 5rem;
+  --height: 15rem;
 }
 .keyboard {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: calc(10%);
-  border: 3px solid black;
+  margin-top: 3rem;
 }
 .key.active {
-  color: red;
-  background-color: hotpink;
+  color: darkblue;
+  background-color: lightgray;
 }
 .key {
   height: var(--height);
   width: var(--width);
   box-sizing: border-box;
+  border: 1px solid #222;
 }
 .flex {
   display: flex;
-  border: 1px solid red;
 }
 .flexCenter {
   justify-content: center;
@@ -29,22 +28,22 @@
   align-items: flex-end;
 }
 .active {
-  background-color: hotpink;
+  background-color: darkgray;
 }
 .white {
-  background-color: aliceblue;
+  background-color: whitesmoke;
   position: relative;
-  /* justify-content: center;
-  align-items: flex-end; */
 }
 .black {
-  background-color: darkslategray;
-  /* position: absolute; */
+  background-color: #333;
+  color: whitesmoke;
   margin-top: calc(var(--height) * -0.35);
   margin-left: calc(var(--width) * 0.65 * -1);
   width: calc(var(--width) * 0.65);
   height: calc(var(--height) * 0.65);
   z-index: 2;
-  /* justify-content: center;
-  align-items: flex-end; */
+}
+.button {
+  height: var(--height);
+  background-color: lightgreen;
 }

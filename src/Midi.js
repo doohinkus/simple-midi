@@ -57,3 +57,9 @@ export const notes = {
 };
 
 export const record = [];
+export class Synth {}
+export class Note extends Synth {
+  setNote(note) {}
+  setKeyTrigger(key) {}
+  playNote() {}
+}

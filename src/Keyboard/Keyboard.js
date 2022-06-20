@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { notes } from "../Midi";
 import styles from "./Keyboard.module.css";
+import Note from "./Note/Note";
 
 export default function Keyboard() {
   const [octave, setOctave] = useState(4);
-  const [activeNote, setActiveNote] = useState(null);
   const [currentNote, setCurrentNote] = useState(null);
   const [activeKey, setActiveKey] = useState(null);
 
@@ -18,14 +18,17 @@ export default function Keyboard() {
       setOctave((prev) => prev - 1);
     }
   }
+  function playNote(note, octave) {
+    note.play(octave);
+  }
   function handleKeyDown(e) {
+    e.stopPropagation();
+
     const key = e.key;
     const isNoteKey = notes[key];
-    // console.log("key -> ", key);
     setActiveKey((prev) => key);
     if (isNoteKey) {
-      notes[key].play(octave);
-      setActiveNote(notes[key].note + octave);
+      playNote(notes[key], octave);
       setCurrentNote(notes[key].note + octave);
     }
     if (key === "ArrowUp") {
@@ -36,15 +39,16 @@ export default function Keyboard() {
     }
   }
   function handleKeyUp(e) {
+    e.stopPropagation();
     const key = e.key;
     const isNoteKey = notes[key];
     setActiveKey((prev) => null);
 
     if (isNoteKey) {
-      notes[key] && notes[key].play(octave);
-      setActiveNote(null);
+      playNote(notes[key], octave);
     }
   }
+
   const activeClass = (key) => `${activeKey === key ? styles.active : ""}`;
   const keyClass = (note, key) =>
     `${styles.key} ${styles.flex} ${styles.flexBottom} ${styles.flexCenter} ${
@@ -62,23 +66,32 @@ export default function Keyboard() {
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
       >
-        <button onClick={raiseOctave} className={`${activeClass("ArrowUp")}`}>
+        <button
+          onClick={raiseOctave}
+          className={`${styles.button} ${activeClass("ArrowUp")}`}
+        >
           Raise Octave
         </button>
         {Object.keys(notes).map((note) => {
-          const _note = notes[note].note;
+          const _note = notes[note];
           return (
-            <div
-              key={_note}
-              className={keyClass(_note, notes[note].key)}
-              data-note={note}
-            >
-              <p>{_note}</p>
-            </div>
+            <Note
+              _note={notes[note]}
+              _class={keyClass(_note.note, _note.key)}
+              octave={octave}
+              key={_note.note}
+              onClick={(e) => {
+                e.stopPropagation();
+                playNote(notes[note], octave);
+              }}
+            />
           );
         })}
 
-        <button onClick={lowerOctave} className={`${activeClass("ArrowDown")}`}>
+        <button
+          onClick={lowerOctave}
+          className={`${styles.button} ${activeClass("ArrowDown")}`}
+        >
           Lower Octave
         </button>
       </div>
