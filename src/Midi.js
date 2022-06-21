@@ -57,9 +57,26 @@ export const notes = {
 };
 
 export const record = [];
-export class Synth {}
+export class Synth {
+  constructor() {
+    this.synth = new Tone.PolySynth().toDestination();
+  }
+}
 export class Note extends Synth {
-  setNote(note) {}
-  setKeyTrigger(key) {}
-  playNote() {}
+  setRoot(root) {
+    this.root = root;
+  }
+  setOctave(octave) {
+    this.octave = octave;
+  }
+  setNote() {
+    this.note = this.root + this.octave;
+  }
+  setKeyTrigger(key) {
+    this.key = key;
+  }
+  playNote() {
+    console.log(this.synth, " ", this.note, " ", this.key);
+    this.synth.triggerAttackRelease(this.note, "16n");
+  }
 }
