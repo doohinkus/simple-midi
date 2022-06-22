@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import Keyboard from "./Keyboard/Keyboard";
 import { NoteFactory } from "./Midi";
 
 function App() {
