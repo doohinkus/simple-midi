@@ -5,12 +5,16 @@ import { NoteFactory } from "./Midi";
 const keyBoard = new NoteFactory();
 keyBoard.makeNotesFromArray([
   { root: "C", octave: 4, key: "a" },
-  { root: "C#", octave: 4, key: "s" },
-  { root: "D", octave: 4, key: "d" },
-  { root: "D#", octave: 4, key: "f" },
-  { root: "E", octave: 4, key: "g" },
-  { root: "F", octave: 4, key: "h" },
-  { root: "F#", octave: 4, key: "j" },
+  { root: "C#", octave: 4, key: "q" },
+  { root: "D", octave: 4, key: "s" },
+  { root: "D#", octave: 4, key: "w" },
+  { root: "E", octave: 4, key: "d" },
+  { root: "F", octave: 4, key: "f" },
+  { root: "F#", octave: 4, key: "r" },
+  { root: "G", octave: 4, key: "g" },
+  { root: "G#", octave: 4, key: "t" },
+  { root: "A", octave: 4, key: "j" },
+  { root: "A#", octave: 4, key: "u" },
 ]);
 
 function App() {
@@ -45,11 +49,22 @@ function App() {
             }}
             onMouseUp={handleNoteUp}
             key={note.getNote()}
-            className={`key flexBottom ${note.isSharp() ? "black" : "white"} ${
+            className={`key ${note.isSharp() ? "black" : "white"} ${
               activeNote === note.getNote() ? "active" : ""
             }`}
           >
-            <p>{note.getNote()}</p>
+            <p style={{ height: "50%" }}>
+              <span
+                style={{
+                  background: "yellow",
+                  color: "var(--dark)",
+                  padding: ".25rem",
+                }}
+              >
+                {note.getNote()}
+              </span>
+            </p>
+            <p>{note.getKey()}</p>
           </div>
         ))}
       </div>

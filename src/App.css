@@ -1,15 +1,17 @@
 :root {
   --width: 5rem;
   --height: 15rem;
+  --dark: #333;
+  --light: whitesmoke;
 }
 .active,
 .sharp.active {
-  color: green;
+  color: var(--dark);
   background: aliceblue;
 }
 .sharp {
-  background-color: #333;
-  color: whitesmoke;
+  background-color: var(--dark);
+  color: var(--light);
 }
 .App-logo {
   height: 40vmin;
@@ -74,18 +76,14 @@ body {
   background-color: darkgray;
 }
 .white {
-  background-color: whitesmoke;
+  background-color: var(--light);
   position: relative;
 }
 .black {
-  background-color: #333;
-  color: whitesmoke;
+  background-color: var(--dark);
+  color: var(--light);
   margin-left: calc(var(--width) * 0.65 * -1);
   width: calc(var(--width) * 0.65);
   height: calc(var(--height) * 0.55);
   z-index: 2;
-}
-.button {
-  height: var(--height);
-  background-color: lightgreen;
 }
