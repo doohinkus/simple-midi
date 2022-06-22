@@ -2,7 +2,9 @@ import * as Tone from "tone";
 
 export class Synth {
   constructor() {
-    this.synth = new Tone.PolySynth().toDestination();
+    if (!this.synth) {
+      this.synth = new Tone.PolySynth().toDestination();
+    }
   }
 }
 export class Note extends Synth {
