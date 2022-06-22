@@ -79,4 +79,37 @@ export class Note extends Synth {
     console.log(this.synth, " ", this.note, " ", this.key);
     this.synth.triggerAttackRelease(this.note, "16n");
   }
+  getNote() {
+    return this.note;
+  }
+  getKey() {
+    return this.key;
+  }
+  getOctave() {
+    return this.octave;
+  }
+  isSharp() {
+    return /#/.test(this.note);
+  }
+}
+
+export class NoteFactory {
+  notes = [];
+  makeNote({ key, octave, root }) {
+    const note = new Note();
+    note.setKeyTrigger(key);
+    note.setRoot(root);
+    note.setOctave(octave);
+    note.setNote();
+    this.notes.push(note);
+  }
+  makeNotesFromArray(arr) {
+    for (let note of arr) {
+      this.makeNote({
+        key: note.key,
+        octave: note.octave,
+        root: note.root,
+      });
+    }
+  }
 }

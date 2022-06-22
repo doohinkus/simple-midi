@@ -1,26 +1,29 @@
 import React from "react";
 import "./App.css";
 import Keyboard from "./Keyboard/Keyboard";
-import { Note } from "./Midi";
+import { NoteFactory } from "./Midi";
 
 function App() {
-  const c = new Note();
-  c.setKeyTrigger("s");
-  c.setRoot("C");
-  c.setOctave(4);
-  c.setNote();
-
+  const keyBoard = new NoteFactory();
+  keyBoard.makeNotesFromArray([
+    { root: "C", octave: 4, key: "a" },
+    { root: "C#", octave: 4, key: "s" },
+    { root: "D", octave: 4, key: "d" },
+  ]);
+  console.log(keyBoard.notes[0]);
   return (
     <div className="App" role="main">
       <h1>Midi Keyboard</h1>
-      <button
-        onKeyPress={(e) => {
-          if (e.key === c.key) c.playNote();
-        }}
-        onClick={() => c.playNote()}
-      >
-        play C
-      </button>
+      {keyBoard.notes.map((note) => (
+        <div
+          onKeyPress={(e) => {
+            if (e.key === note.getKey()) note.playNote();
+          }}
+        >
+          {note.isSharp() ? "sharp" : ""}
+          <button onClick={() => note.playNote()}>{note.getNote()}</button>
+        </div>
+      ))}
       {/* <Keyboard />
        */}
     </div>
