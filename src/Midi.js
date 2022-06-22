@@ -2,9 +2,9 @@ import * as Tone from "tone";
 
 export class Synth {
   constructor() {
-    if (!this.synth) {
-      this.synth = new Tone.PolySynth().toDestination();
-    }
+    // if (!this.synth) {
+    this.synth = new Tone.PolySynth().toDestination();
+    // }
   }
 }
 export class Note extends Synth {
@@ -21,7 +21,7 @@ export class Note extends Synth {
     this.key = key;
   }
   playNote() {
-    console.log(this.synth, " ", this.note, " ", this.key);
+    // console.log(this.synth, " ", this.note, " ", this.key);
     this.synth.triggerAttackRelease(this.note, "16n");
   }
   getNote() {
