@@ -12,49 +12,53 @@ keyBoard.makeNotesFromArray([
   { root: "F", octave: 4, key: "h" },
   { root: "F#", octave: 4, key: "j" },
 ]);
-function App() {
-  // console.log(keyBoard.notes[0]);
-  const [activeKey, setActiveKey] = useState(null);
-  const [activeNote, setActiveNote] = useState(null);
-  return (
-    <div
-      className="App"
 
-      // role="main"
-    >
+function App() {
+  const [activeNote, setActiveNote] = useState(null);
+  function handleNoteDown(e) {
+    e.stopPropagation();
+    const note = keyBoard.notes.filter((note) => note.key === e.key)[0];
+    if (note) {
+      note.playNote();
+      setActiveNote(note.getNote());
+    }
+  }
+  function handleNoteUp(e) {
+    e.stopPropagation();
+    setActiveNote(null);
+  }
+  return (
+    <div className="App">
       <h1>Midi Keyboard</h1>
       <div
         style={{
           display: "flex",
           overflow: "hidden",
           border: "1px solid lime",
+          justifyContent: "center",
+          margin: "auto",
         }}
         tabIndex={0}
-        onKeyDown={(e) => {
-          e.stopPropagation();
-
-          const note = keyBoard.notes.filter((note) => note.key === e.key)[0];
-          if (note) {
-            note.playNote();
-            setActiveNote(note.getNote());
-          }
-        }}
-        // onKeyUp={(e) => setActiveNote(null)}
+        onKeyDown={handleNoteDown}
+        onKeyUp={handleNoteUp}
       >
         {keyBoard.notes.map((note) => (
           <div
-            onClick={(e) => {
+            onMouseDown={(e) => {
               e.stopPropagation();
               note.playNote();
               setActiveNote(note.getNote());
             }}
+            onMouseUp={handleNoteUp}
             style={{
               width: "3rem",
               height: "10rem",
-              backgroundColor: "hotpink",
+              border: "1px solid #333",
             }}
             key={note.getNote()}
-            className={`${activeNote === note.getNote() ? "active" : ""}`}
+            className={`${activeNote === note.getNote() ? "active" : ""}${
+              note.isSharp() ? "sharp" : ""
+            }`}
           >
             {note.getNote()} {note.isSharp() ? "sharp" : ""}
           </div>

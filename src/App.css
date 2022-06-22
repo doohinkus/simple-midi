@@ -1,8 +1,14 @@
 .App {
   text-align: center;
 }
-.active {
+.active,
+.sharp.active {
   color: green;
+  background: aliceblue;
+}
+.sharp {
+  background-color: #333;
+  color: whitesmoke;
 }
 .App-logo {
   height: 40vmin;
