@@ -88,6 +88,9 @@ export class Note extends Synth {
   getOctave() {
     return this.octave;
   }
+  getRoot() {
+    return this.root;
+  }
   isSharp() {
     return /#/.test(this.note);
   }
