@@ -28,16 +28,10 @@ function App() {
     setActiveNote(null);
   }
   return (
-    <div className="App">
+    <div className="App" role="main">
       <h1>Midi Keyboard</h1>
       <div
-        style={{
-          display: "flex",
-          overflow: "hidden",
-          border: "1px solid lime",
-          justifyContent: "center",
-          margin: "auto",
-        }}
+        className="keyboard"
         tabIndex={0}
         onKeyDown={handleNoteDown}
         onKeyUp={handleNoteUp}
@@ -50,17 +44,12 @@ function App() {
               setActiveNote(note.getNote());
             }}
             onMouseUp={handleNoteUp}
-            style={{
-              width: "3rem",
-              height: "10rem",
-              border: "1px solid #333",
-            }}
             key={note.getNote()}
-            className={`${activeNote === note.getNote() ? "active" : ""}${
-              note.isSharp() ? "sharp" : ""
+            className={`key flexBottom ${note.isSharp() ? "black" : "white"} ${
+              activeNote === note.getNote() ? "active" : ""
             }`}
           >
-            {note.getNote()} {note.isSharp() ? "sharp" : ""}
+            <p>{note.getNote()}</p>
           </div>
         ))}
       </div>

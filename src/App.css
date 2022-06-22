@@ -1,5 +1,6 @@
-.App {
-  text-align: center;
+:root {
+  --width: 5rem;
+  --height: 15rem;
 }
 .active,
 .sharp.active {
@@ -20,7 +21,9 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+body {
+  text-align: center;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -43,4 +46,46 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.keyboard {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.key {
+  height: var(--height);
+  width: var(--width);
+  box-sizing: border-box;
+  border: 1px solid #222;
+}
+.flex {
+  display: flex;
+}
+.flexCenter {
+  justify-content: center;
+}
+.flexBottom {
+  align-items: flex-end;
+}
+.active,
+.key.active {
+  background-color: darkgray;
+}
+.white {
+  background-color: whitesmoke;
+  position: relative;
+}
+.black {
+  background-color: #333;
+  color: whitesmoke;
+  margin-left: calc(var(--width) * 0.65 * -1);
+  width: calc(var(--width) * 0.65);
+  height: calc(var(--height) * 0.55);
+  z-index: 2;
+}
+.button {
+  height: var(--height);
+  background-color: lightgreen;
 }
