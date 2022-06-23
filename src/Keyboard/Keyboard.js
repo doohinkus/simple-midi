@@ -1,100 +1,50 @@
-import React, { useState } from "react";
-import { notes } from "../Midi";
-import styles from "./Keyboard.module.css";
-import Note from "./Note/Note";
-
-export default function Keyboard() {
-  const [octave, setOctave] = useState(4);
-  const [currentNote, setCurrentNote] = useState(null);
-  const [activeKey, setActiveKey] = useState(null);
-
-  function raiseOctave() {
-    if (octave < 8) {
-      setOctave((prev) => prev + 1);
-    }
+import React, { useRef, useState } from "react";
+import Key from "./Key";
+export default function Keyboard({ keyBoard }) {
+  const keys = useRef();
+  const [activeNote, setActiveNote] = useState(null);
+  const [octave, setOctave] = useState(3);
+  function playNote(note) {
+    note.setOctave(octave);
+    note.setNote();
+    setActiveNote((prev) => note.getNote());
+    console.log(note);
+    note.playNote();
   }
-  function lowerOctave() {
-    if (octave > 1) {
-      setOctave((prev) => prev - 1);
-    }
-  }
-  function playNote(note, octave) {
-    note.play(octave);
-  }
-  function handleKeyDown(e) {
+  function handleNoteDown(e) {
     e.stopPropagation();
-
-    const key = e.key;
-    const isNoteKey = notes[key];
-    setActiveKey((prev) => key);
-    if (isNoteKey) {
-      playNote(notes[key], octave);
-      setCurrentNote(notes[key].note + octave);
-    }
-    if (key === "ArrowUp") {
-      raiseOctave();
-    }
-    if (key === "ArrowDown") {
-      lowerOctave();
+    const note = keyBoard.notes.filter((note) => note.key === e.key)[0];
+    if (note) {
+      playNote(note);
     }
   }
-  function handleKeyUp(e) {
+  function handleNoteUp(e) {
     e.stopPropagation();
-    const key = e.key;
-    const isNoteKey = notes[key];
-    setActiveKey((prev) => null);
-
-    if (isNoteKey) {
-      playNote(notes[key], octave);
-    }
+    setActiveNote(null);
+    keys.current.focus();
   }
-
-  const activeClass = (key) => `${activeKey === key ? styles.active : ""}`;
-  const keyClass = (note, key) =>
-    `${styles.key} ${styles.flex} ${styles.flexBottom} ${styles.flexCenter} ${
-      /#/.test(note) ? styles.black : styles.white
-    } ${activeClass(key)}`;
-
   return (
-    <>
-      <p>octave: {octave}</p>
-      <p>last note played: {currentNote}</p>
-      <p>active key: {activeKey}</p>
-      <div
-        className={styles.keyboard}
-        tabIndex={0}
-        onKeyDown={handleKeyDown}
-        onKeyUp={handleKeyUp}
-      >
-        <button
-          onClick={raiseOctave}
-          className={`${styles.button} ${activeClass("ArrowUp")}`}
+    <div
+      className="keyboard"
+      ref={keys}
+      tabIndex={0}
+      onKeyDown={handleNoteDown}
+      onKeyUp={handleNoteUp}
+    >
+      {keyBoard.notes.map((note) => (
+        <div
+          onMouseDown={() => {
+            playNote(note);
+          }}
+          onMouseUp={handleNoteUp}
+          key={note.getNote()}
+          className={`key ${note.isSharp() ? "black" : "white"} ${
+            activeNote === note.getNote() ? "active" : ""
+          }`}
         >
-          Raise Octave
-        </button>
-        {Object.keys(notes).map((note) => {
-          const _note = notes[note];
-          return (
-            <Note
-              _note={notes[note]}
-              _class={keyClass(_note.note, _note.key)}
-              octave={octave}
-              key={_note.note}
-              onClick={(e) => {
-                e.stopPropagation();
-                playNote(notes[note], octave);
-              }}
-            />
-          );
-        })}
-
-        <button
-          onClick={lowerOctave}
-          className={`${styles.button} ${activeClass("ArrowDown")}`}
-        >
-          Lower Octave
-        </button>
-      </div>
-    </>
+          <Key note={note} />
+        </div>
+      ))}
+    </div>
   );
 }
