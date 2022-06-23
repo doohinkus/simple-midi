@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import Key from "./Key";
+import Button from "./Button";
 export default function Keyboard({ keyBoard }) {
   const keys = useRef();
   const [activeNote, setActiveNote] = useState(null);
@@ -8,29 +9,39 @@ export default function Keyboard({ keyBoard }) {
     note.setOctave(octave);
     note.setNote();
     setActiveNote((prev) => note.getNote());
-    console.log(note);
+    // console.log(note);
     note.playNote();
   }
-  function handleNoteDown(e) {
+  function handleKeyDown(e) {
     e.stopPropagation();
-    const note = keyBoard.notes.filter((note) => note.key === e.key)[0];
-    if (note) {
-      playNote(note);
-    }
+    const key = e.key;
+    const note = keyBoard.notes.filter((note) => note.key === key)[0];
+
+    if (note) playNote(note);
+    if (key === "ArrowUp") handleRaiseOctave();
+    if (key === "ArrowDown") handleLowerOctave();
   }
   function handleNoteUp(e) {
     e.stopPropagation();
     setActiveNote(null);
     keys.current.focus();
   }
+  function handleRaiseOctave() {
+    if (octave < 6) setOctave((prev) => prev + 1);
+  }
+  function handleLowerOctave() {
+    if (octave > 1) setOctave((prev) => prev - 1);
+  }
   return (
     <div
       className="keyboard"
       ref={keys}
       tabIndex={0}
-      onKeyDown={handleNoteDown}
+      onKeyDown={handleKeyDown}
       onKeyUp={handleNoteUp}
     >
+      <Button onClick={handleLowerOctave}>Lower Octave</Button>
+
       {keyBoard.notes.map((note) => (
         <div
           onMouseDown={() => {
@@ -45,6 +56,7 @@ export default function Keyboard({ keyBoard }) {
           <Key note={note} />
         </div>
       ))}
+      <Button onClick={handleRaiseOctave}>Increase Octave</Button>
     </div>
   );
 }
