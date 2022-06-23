@@ -4,15 +4,17 @@ export default function Key({ note }) {
   return (
     <>
       <p style={{ height: "50%" }}>
-        <span
+        {/* <span
           style={{
             background: "yellow",
             color: "var(--dark)",
             padding: ".25rem",
+            textAlign: "left",
+            display: "block",
           }}
         >
           {note.getNote()}
-        </span>
+        </span> */}
       </p>
       <p>{note.getKey()}</p>
     </>
