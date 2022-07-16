@@ -15,3 +15,5 @@ npm start
 ```
 
 Browser will launch app -> http://localhost:3000
+
+MVP -> https://doohinkus.github.io/simple-midi/
