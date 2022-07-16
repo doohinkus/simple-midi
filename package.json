@@ -1,7 +1,7 @@
 {
   "name": "simple-midi",
   "version": "0.1.0",
-  "homepage": "https://doohinkus.github.io/midi",
+  "homepage": "https://doohinkus.github.io/simple-midi",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -17,7 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build",
+    "deploy": "gh-pages -b hosted-page -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
