@@ -1,15 +1,15 @@
 {
   "main.css": "/simple-midi/static/css/main.357e9640.chunk.css",
-  "main.js": "/simple-midi/static/js/main.2a843161.chunk.js",
-  "main.js.map": "/simple-midi/static/js/main.2a843161.chunk.js.map",
+  "main.js": "/simple-midi/static/js/main.61b669b6.chunk.js",
+  "main.js.map": "/simple-midi/static/js/main.61b669b6.chunk.js.map",
   "static/js/1.91d1d4c5.chunk.js": "/simple-midi/static/js/1.91d1d4c5.chunk.js",
   "static/js/1.91d1d4c5.chunk.js.map": "/simple-midi/static/js/1.91d1d4c5.chunk.js.map",
-  "static/js/2.7c25b79d.chunk.js": "/simple-midi/static/js/2.7c25b79d.chunk.js",
-  "static/js/2.7c25b79d.chunk.js.map": "/simple-midi/static/js/2.7c25b79d.chunk.js.map",
+  "static/js/2.84ec584f.chunk.js": "/simple-midi/static/js/2.84ec584f.chunk.js",
+  "static/js/2.84ec584f.chunk.js.map": "/simple-midi/static/js/2.84ec584f.chunk.js.map",
   "runtime~main.js": "/simple-midi/static/js/runtime~main.5efc3d91.js",
   "runtime~main.js.map": "/simple-midi/static/js/runtime~main.5efc3d91.js.map",
   "static/css/main.357e9640.chunk.css.map": "/simple-midi/static/css/main.357e9640.chunk.css.map",
   "index.html": "/simple-midi/index.html",
-  "precache-manifest.e9e446449c7d63f05dc3a84e4772faf5.js": "/simple-midi/precache-manifest.e9e446449c7d63f05dc3a84e4772faf5.js",
+  "precache-manifest.6d549ea211df2a97590f45e84242edb5.js": "/simple-midi/precache-manifest.6d549ea211df2a97590f45e84242edb5.js",
   "service-worker.js": "/simple-midi/service-worker.js"
 }
