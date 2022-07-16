@@ -14,8 +14,8 @@ keyBoard.makeNotesFromArray([
   { root: "F#", octave: 4, key: "r" },
   { root: "G", octave: 4, key: "g" },
   { root: "G#", octave: 4, key: "t" },
-  { root: "A", octave: 4, key: "j" },
-  { root: "A#", octave: 4, key: "u" },
+  { root: "A", octave: 4, key: "h" },
+  { root: "A#", octave: 4, key: "y" },
 ]);
 function App() {
   return (

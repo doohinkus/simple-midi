@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, memo } from "react";
 import Key from "./Key";
 import Button from "./Button";
-export default function Keyboard({ keyBoard }) {
+import { useLoadCount } from "../useLoadCount";
+function Keyboard({ keyBoard }) {
   const keys = useRef();
   const [activeNote, setActiveNote] = useState(null);
   const [octave, setOctave] = useState(3);
@@ -60,3 +61,4 @@ export default function Keyboard({ keyBoard }) {
     </div>
   );
 }
+export default memo(Keyboard);

@@ -1,6 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
+import { useLoadCount } from "../../useLoadCount";
+function Key({ note }) {
+  // useLoadCount();
 
-export default function Key({ note }) {
   return (
     <>
       <p style={{ height: "50%" }}>
@@ -20,3 +22,4 @@ export default function Key({ note }) {
     </>
   );
 }
+export default memo(Key);
