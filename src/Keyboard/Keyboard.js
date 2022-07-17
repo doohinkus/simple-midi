@@ -1,4 +1,4 @@
-import React, { useRef, useState, memo } from "react";
+import React, { useRef, useState, memo, useCallback } from "react";
 import Key from "./Key";
 import Button from "./Button";
 import { useLoadCount } from "../useLoadCount";
@@ -33,6 +33,8 @@ function Keyboard({ keyBoard }) {
   function handleLowerOctave() {
     if (octave > 1) setOctave((prev) => prev - 1);
   }
+  const _handleLowerOctave = useCallback(handleLowerOctave, [octave]);
+  const _handleRaiseOctave = useCallback(handleRaiseOctave, [octave]);
   return (
     <div
       className="keyboard"
@@ -41,7 +43,7 @@ function Keyboard({ keyBoard }) {
       onKeyDown={handleKeyDown}
       onKeyUp={handleNoteUp}
     >
-      <Button onClick={handleLowerOctave}>Lower Octave</Button>
+      <Button handleClick={_handleLowerOctave}>Lower Octave</Button>
 
       {keyBoard.notes.map((note) => (
         <div
@@ -57,7 +59,7 @@ function Keyboard({ keyBoard }) {
           <Key note={note} />
         </div>
       ))}
-      <Button onClick={handleRaiseOctave}>Increase Octave</Button>
+      <Button handleClick={_handleRaiseOctave}>Increase Octave</Button>
     </div>
   );
 }

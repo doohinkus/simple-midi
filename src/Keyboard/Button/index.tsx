@@ -1,14 +1,15 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, memo } from "react";
 
 interface ButtonProps {
   children: ReactNode;
-  props: Object;
+  handleClick: () => void;
 }
 
-export default function Button({ children, ...props }: ButtonProps) {
+function Button({ children, handleClick }: ButtonProps) {
   return (
-    <button className="button" {...props}>
+    <button className="button" onClick={handleClick}>
       {children}
     </button>
   );
 }
+export default memo(Button);
