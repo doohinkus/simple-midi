@@ -38,6 +38,7 @@ function Keyboard({ keyBoard }) {
   return (
     <div
       className="keyboard"
+      data-testid="keyboard"
       ref={keys}
       tabIndex={0}
       onKeyDown={handleKeyDown}

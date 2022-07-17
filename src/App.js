@@ -19,7 +19,7 @@ keyBoard.makeNotesFromArray([
 ]);
 function App() {
   return (
-    <div className="App" role="main">
+    <div className="App" role="main" data-testid="app">
       <h1>Midi Keyboard</h1>
       <Keyboard keyBoard={keyBoard} />
     </div>
