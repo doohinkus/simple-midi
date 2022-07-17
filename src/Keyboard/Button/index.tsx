@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, memo } from "react";
+import React, { ReactNode, memo } from "react";
 
 interface ButtonProps {
   children: ReactNode;
@@ -7,7 +7,7 @@ interface ButtonProps {
 
 function Button({ children, handleClick }: ButtonProps) {
   return (
-    <button className="button" onClick={handleClick}>
+    <button className="button" data-testid="button" onClick={handleClick}>
       {children}
     </button>
   );
