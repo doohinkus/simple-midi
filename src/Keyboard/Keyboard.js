@@ -46,7 +46,7 @@ function Keyboard({ keyBoard }) {
     >
       <Button handleClick={_handleLowerOctave}>Lower Octave</Button>
 
-      {keyBoard.notes.map((note) => (
+      {keyBoard?.notes?.map((note) => (
         <div
           onMouseDown={() => {
             playNote(note);
